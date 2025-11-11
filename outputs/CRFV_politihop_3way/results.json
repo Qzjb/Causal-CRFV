@@ -1,0 +1,81 @@
+{
+ "total_steps": 740.0,
+ "best_accuracy": {
+  "data/politihop/original/politihop_valid_all.json": 0.7872340425531915,
+  "data/politihop/original/politihop_test_all.json": 0.785,
+  "data/politihop/original/politihop_valid_adv.json": 0.7872340425531915,
+  "data/politihop/original/politihop_test_adv.json": 0.795,
+  "data/politihop/original/politihop_valid_even.json": 0.7943262411347518,
+  "data/politihop/original/politihop_test_even.json": 0.795,
+  "data/politihop/original/Hard_PolitiHop_by_gpt-3.5.json": 0.795,
+  "data/politihop/original/Hard_PolitiHop_by_gpt-4.0.json": 0.795
+ },
+ "best_step": {
+  "data/politihop/original/politihop_valid_all.json": 444,
+  "data/politihop/original/politihop_test_all.json": 148,
+  "data/politihop/original/politihop_valid_adv.json": 444,
+  "data/politihop/original/politihop_test_adv.json": 148,
+  "data/politihop/original/politihop_valid_even.json": 444,
+  "data/politihop/original/politihop_test_even.json": 148,
+  "data/politihop/original/Hard_PolitiHop_by_gpt-3.5.json": 148,
+  "data/politihop/original/Hard_PolitiHop_by_gpt-4.0.json": 148
+ },
+ "accuracy": {
+  "data/politihop/original/politihop_valid_all.json": [
+   0.6879432624113475,
+   0.6879432624113475,
+   0.7872340425531915,
+   0.7092198581560284,
+   0.7021276595744681
+  ],
+  "data/politihop/original/politihop_test_all.json": [
+   0.785,
+   0.705,
+   0.735,
+   0.755,
+   0.735
+  ],
+  "data/politihop/original/politihop_valid_adv.json": [
+   0.7163120567375887,
+   0.6950354609929078,
+   0.7872340425531915,
+   0.7021276595744681,
+   0.7163120567375887
+  ],
+  "data/politihop/original/politihop_test_adv.json": [
+   0.795,
+   0.72,
+   0.77,
+   0.755,
+   0.74
+  ],
+  "data/politihop/original/politihop_valid_even.json": [
+   0.6879432624113475,
+   0.7092198581560284,
+   0.7943262411347518,
+   0.7234042553191489,
+   0.7163120567375887
+  ],
+  "data/politihop/original/politihop_test_even.json": [
+   0.795,
+   0.715,
+   0.765,
+   0.755,
+   0.74
+  ],
+  "data/politihop/original/Hard_PolitiHop_by_gpt-3.5.json": [
+   0.795,
+   0.71,
+   0.765,
+   0.74,
+   0.715
+  ],
+  "data/politihop/original/Hard_PolitiHop_by_gpt-4.0.json": [
+   0.795,
+   0.71,
+   0.76,
+   0.74,
+   0.72
+  ]
+ }
+}

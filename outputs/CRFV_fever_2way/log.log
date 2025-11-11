@@ -1,0 +1,210 @@
+2024-10-28 18:53:05,197 [INFO] load data...
+2024-10-28 18:53:05,198 [INFO] loading vocabulary file pretrained_models/BERT-Pair/vocab.txt
+2024-10-28 18:55:19,839 [INFO] loading vocabulary file pretrained_models/BERT-Pair/vocab.txt
+2024-10-28 18:56:12,700 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:56:12,701 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 18:57:50,493 [INFO] loading vocabulary file pretrained_models/BERT-Pair/vocab.txt
+2024-10-28 18:58:04,759 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:58:04,759 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 18:58:31,613 [INFO] loading vocabulary file pretrained_models/BERT-Pair/vocab.txt
+2024-10-28 18:58:36,459 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:58:36,460 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 18:58:43,391 [INFO] loading vocabulary file pretrained_models/BERT-Pair/vocab.txt
+2024-10-28 18:58:45,878 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:58:45,878 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 18:58:49,892 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:58:49,892 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 18:58:51,087 [INFO] start train...
+2024-10-28 18:58:51,088 [INFO] loading archive file pretrained_models/BERT-Pair
+2024-10-28 18:58:51,088 [INFO] Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+2024-10-28 19:15:09,619 [INFO] epoch: 0, Train acc: 0.950726, total loss: 2.672258
+
+2024-10-28 19:16:37,750 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.888089
+
+2024-10-28 19:17:01,732 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.921200
+
+2024-10-28 19:17:07,338 [INFO] data/fever/fever2-2class.json Dev total acc: 0.592122
+
+2024-10-28 19:17:10,398 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.653465
+
+2024-10-28 19:29:32,788 [INFO] epoch: 1, Train acc: 0.966586, total loss: 2.093841
+
+2024-10-28 19:31:00,906 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.908866
+
+2024-10-28 19:31:24,974 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.936343
+
+2024-10-28 19:31:30,662 [INFO] data/fever/fever2-2class.json Dev total acc: 0.634053
+
+2024-10-28 19:31:33,811 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.678218
+
+2024-10-28 19:43:56,517 [INFO] epoch: 2, Train acc: 0.981205, total loss: 1.744747
+
+2024-10-28 19:45:24,619 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.895065
+
+2024-10-28 19:45:48,183 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.928491
+
+2024-10-28 19:45:53,388 [INFO] data/fever/fever2-2class.json Dev total acc: 0.609911
+
+2024-10-28 19:45:56,062 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.648515
+
+2024-10-28 19:58:17,596 [INFO] epoch: 3, Train acc: 0.988741, total loss: 1.517235
+
+2024-10-28 19:59:45,631 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.876763
+
+2024-10-28 20:00:09,189 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.909983
+
+2024-10-28 20:00:14,384 [INFO] data/fever/fever2-2class.json Dev total acc: 0.611182
+
+2024-10-28 20:00:17,051 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.673267
+
+2024-10-28 20:12:38,878 [INFO] epoch: 4, Train acc: 0.992524, total loss: 1.370915
+
+2024-10-28 20:14:06,827 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.883138
+
+2024-10-28 20:14:30,366 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.922322
+
+2024-10-28 20:14:35,564 [INFO] data/fever/fever2-2class.json Dev total acc: 0.616264
+
+2024-10-28 20:14:38,232 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.680693
+
+2024-10-28 20:26:59,982 [INFO] epoch: 5, Train acc: 0.995551, total loss: 1.254315
+
+2024-10-28 20:28:27,958 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.868587
+
+2024-10-28 20:28:51,486 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.907179
+
+2024-10-28 20:28:56,682 [INFO] data/fever/fever2-2class.json Dev total acc: 0.612452
+
+2024-10-28 20:28:59,350 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.675743
+
+2024-10-28 20:41:19,864 [INFO] epoch: 6, Train acc: 0.996822, total loss: 1.174853
+
+2024-10-28 20:42:47,829 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.860861
+
+2024-10-28 20:43:11,340 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.900168
+
+2024-10-28 20:43:16,538 [INFO] data/fever/fever2-2class.json Dev total acc: 0.607370
+
+2024-10-28 20:43:19,209 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.688119
+
+2024-10-28 20:55:41,171 [INFO] epoch: 7, Train acc: 0.998487, total loss: 1.121661
+
+2024-10-28 20:57:09,066 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.852910
+
+2024-10-28 20:57:32,584 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.892036
+
+2024-10-28 20:57:37,788 [INFO] data/fever/fever2-2class.json Dev total acc: 0.589581
+
+2024-10-28 20:57:40,461 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.665842
+
+2024-10-28 21:10:01,922 [INFO] epoch: 8, Train acc: 0.999122, total loss: 1.086889
+
+2024-10-28 21:11:29,665 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.854485
+
+2024-10-28 21:11:53,152 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.895681
+
+2024-10-28 21:11:58,344 [INFO] data/fever/fever2-2class.json Dev total acc: 0.585769
+
+2024-10-28 21:12:01,005 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.660891
+
+2024-10-28 21:24:22,189 [INFO] epoch: 9, Train acc: 0.999607, total loss: 1.064646
+
+2024-10-28 21:25:49,940 [INFO] data/fever/fever_dev-2class.json Dev total acc: 0.857411
+
+2024-10-28 21:26:13,455 [INFO] data/fever/fever_dev-2class-mh.json Dev total acc: 0.896803
+
+2024-10-28 21:26:18,641 [INFO] data/fever/fever2-2class.json Dev total acc: 0.589581
+
+2024-10-28 21:26:21,302 [INFO] data/fever/fever2-2class-mh.json Dev total acc: 0.670792
+
+2024-10-28 21:26:21,304 [INFO] {
+ "data/fever/fever_dev-2class.json": 0.908865886588659,
+ "data/fever/fever_dev-2class-mh.json": 0.9363432417274257,
+ "data/fever/fever2-2class.json": 0.6340533672172809,
+ "data/fever/fever2-2class-mh.json": 0.6881188118811882
+}
+2024-10-28 21:26:21,304 [INFO] {
+ "data/fever/fever_dev-2class.json": 4130,
+ "data/fever/fever_dev-2class-mh.json": 4130,
+ "data/fever/fever2-2class.json": 4130,
+ "data/fever/fever2-2class-mh.json": 14455
+}
+2024-10-28 21:26:21,304 [INFO] total_steps: 20650
