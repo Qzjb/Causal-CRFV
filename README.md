@@ -36,7 +36,6 @@ pip install pandas
 ```
 ## 🚀 Run
 
-CRFV fever 2-way 
 CUDA_VISIBLE_DEVICES="0" python train_CRFV_fever_2way.py \
 --seed 1234 \
 --batch_size 16 \
@@ -46,7 +45,6 @@ CUDA_VISIBLE_DEVICES="0" python train_CRFV_fever_2way.py \
 --evi_num 5 \
 --max_seq_length 128 
 
-CRFV politihop 3-way 
 CUDA_VISIBLE_DEVICES="0" python train_CRFV_politihop_3way.py \
 --seed 1234 \
 --batch_size 4 \
@@ -56,7 +54,6 @@ CUDA_VISIBLE_DEVICES="0" python train_CRFV_politihop_3way.py \
 --evi_num 20 \
 --max_seq_length 128 
 
-CRFV politihop 2-way 
 CUDA_VISIBLE_DEVICES="0" python train_CRFV_politihop_2way.py \
 --seed 1234 \
 --batch_size 4 \
