@@ -34,11 +34,6 @@ pip install scikit-learn
 pip install pandas
 
 ```
-## 📄 Citation
-
-If you use this code in your work, please cite the following paper:
-
-```
 ## 🚀 Run
 
 CUDA_VISIBLE_DEVICES="0" python train_CRFV_fever_2way.py \
@@ -67,5 +62,6 @@ CUDA_VISIBLE_DEVICES="0" python train_CRFV_politihop_2way.py \
 --weight_decay 5e-4 \
 --evi_num 20 \
 --max_seq_length 128 
+
 
 
