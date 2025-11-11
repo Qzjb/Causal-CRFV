@@ -63,3 +63,11 @@ CUDA_VISIBLE_DEVICES="0" python train_CRFV_politihop_2way.py \
 --evi_num 20 \
 --max_seq_length 128 
 
+```
+## 📄 Citation
+
+If you use this code in your work, please cite the following paper:
+
+
+
+
