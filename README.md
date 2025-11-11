@@ -1,6 +1,6 @@
 # Dynamic Debiasing of Multi-Hop Fact Verification via Counterfactual Reasoning 
 ## CRFV Framework
-![CMFV](image/fig1.png)
+![CRFV](image/Fig1.png)
 ## 📦 Download
 
 To reproduce the results in the paper, please download the dataset and pre-trained models from [this shared folder](https://drive.google.com/drive/folders/1gU_92qYOAVcifI2H8bcxBzf4VPZtPINc?usp=sharing).
