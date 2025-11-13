@@ -144,8 +144,8 @@ def _truncate_seq_pair(tokens_a, tokens_b, max_length):
 #     """Read a list of `InputExample`s from an input file."""
 #     examples = []
 #     unique_id = 0
-#     all_sent_labels = [] # 有几个句子,包括claim
-#     all_evi_labels = [] # 句子中哪几个是证据，包括claim
+#     all_sent_labels = [] 
+#     all_evi_labels = [] 
 #     with open(input_file, "r", encoding='utf-8') as reader:
 #         while True:
 #             line = reader.readline()
@@ -184,8 +184,8 @@ def read_examples(input_file, max_evi_num):
     label_map = {'SUPPORTS': 0, 'REFUTES': 1, 'NOT ENOUGH INFO': 2}
     examples = []
     unique_id = 0
-    all_sent_labels = [] # 有几个句子,包括claim
-    all_evi_labels = [] # 句子中哪几个是证据，包括claim
+    all_sent_labels = [] 
+    all_evi_labels = [] 
     with open(input_file, "r", encoding='utf-8') as reader:
         while True:
             line = reader.readline()
