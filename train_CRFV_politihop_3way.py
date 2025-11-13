@@ -55,10 +55,7 @@ dev_file_paths = [
     "data/politihop/original/Hard_PolitiHop_by_gpt-4.0.json",
     ]
 graph_rep_model_path = "pretrained_models/graph_rep_model_politihop.pt"
-<<<<<<< HEAD
-=======
 beta = 0.4
->>>>>>> aca5539 (first commit)
 nclass = 3
 max_length = 5
 beam_size = 3
@@ -74,14 +71,10 @@ if os.path.exists(dir_path / 'results.json'):
     exit(0)
 else:
     print(dir_path)
-<<<<<<< HEAD
-=======
-# 将当前实验的代码复制到日志文件夹
 # tx.utils.maybe_create_dir(dir_path / 'code')
 # for i in Path().iterdir():
 #     if i.is_file():
 #         copyfile(i,dir_path / 'code' / i)
->>>>>>> aca5539 (first commit)
 logger = init_logger(dir_path / "log.log")
 tx.utils.maybe_create_dir(dir_path / 'models')
 
