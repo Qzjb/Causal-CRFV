@@ -49,10 +49,7 @@ dev_file_paths = [
     "data/politihop/symmetric/Symmetric_PolitiHop.json",
     ]
 graph_rep_model_path = "pretrained_models/graph_rep_model_politihop.pt"
-<<<<<<< HEAD
-=======
 beta = 0.5
->>>>>>> aca5539 (first commit)
 nclass = 2
 max_length = 5
 beam_size = 3
@@ -68,14 +65,11 @@ if os.path.exists(dir_path / 'results.json'):
     exit(0)
 else:
     print(dir_path)
-<<<<<<< HEAD
-=======
-# 将当前实验的代码复制到日志文件夹
+
 # tx.utils.maybe_create_dir(dir_path / 'code')
 # for i in Path().iterdir():
 #     if i.is_file():
 #         copyfile(i,dir_path / 'code' / i)
->>>>>>> aca5539 (first commit)
 logger = init_logger(dir_path / "log.log")
 tx.utils.maybe_create_dir(dir_path / 'models')
 
@@ -163,11 +157,7 @@ for epoch in range(args.epochs):
         loss3 = F.cross_entropy(outputs4, labels)
         loss4 = F.cross_entropy(outputs5, labels)
         loss = 0.5 * loss + 0.5 * loss1 + 1 * loss2 + 0.8 * loss3 + 0.1 * loss4
-<<<<<<< HEAD
-
-=======
         
->>>>>>> aca5539 (first commit)
         correct = correct_prediction(outputs, labels)
         correct_pred += correct
         running_loss += loss.item()
@@ -176,11 +166,7 @@ for epoch in range(args.epochs):
         train_tqdm_iterator.set_description(description)
 
         loss = loss / opt_steps
-<<<<<<< HEAD
-        loss.backward()
-=======
         loss.backward()               
->>>>>>> aca5539 (first commit)
         if index % opt_steps == 0 or index+1 == len(train_tqdm_iterator):
             optimizer.step()
             optimizer.zero_grad()
