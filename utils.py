@@ -26,7 +26,7 @@ def init_logger(log_file=None):
 
     return logger
 
-# 合并evidence图和claim图, claim中每个结点与evidence中每个结点相连接。
+
 def merage_graph(claim_graph, evidence_graph):
     x1 = claim_graph["nodes"]
     x2 = evidence_graph["nodes"]
@@ -64,7 +64,7 @@ def load_data(file): # concat sentence
     indexs, labels, embeddings = a.values()
     return embeddings, labels
 
-# 合并evidence图和claim图, claim中每个结点与evidence中每个结点相连接，合并所有的claim结点，只有一个claim结点。
+
 def merage_graph_one_claim_node(claim_graph, evidence_graph):
     x1 = claim_graph["nodes"]
     x2 = evidence_graph["nodes"]
@@ -95,7 +95,7 @@ def load_graph_data_one_claim_node(file):
 def cal_kmeans_center(graphs, n_cluster):
     all_graph_rep = []
     for graph in graphs:
-        x = graph["nodes"] # 结点特征 [200,768] 假如有200个结点
+        x = graph["nodes"] 
         claim_rep = x[0:graph["claim_length"]].mean(dim=0) # [768]
         evidence_rep = x[graph["claim_length"]:].mean(dim=0) # [768]
         graph_rep = torch.cat([claim_rep,evidence_rep],dim=0) # [768*2]
@@ -116,7 +116,7 @@ def cal_kmeans_center(graphs, n_cluster):
 def cal_nwgm_center(graphs, n_class):
     all_graph_rep = []
     for graph in graphs:
-        x = graph["nodes"] # 结点特征 [200,768] 假如有200个结点
+        x = graph["nodes"] 
         claim_rep = x[0:graph["claim_length"]].mean(dim=0) # [768]
         evidence_rep = x[graph["claim_length"]:].mean(dim=0) # [768]
         graph_rep = torch.cat([claim_rep,evidence_rep],dim=0) # [768*2]
