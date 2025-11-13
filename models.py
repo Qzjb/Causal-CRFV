@@ -32,7 +32,7 @@ class SelfAttention(nn.Module):
         if evi_labels is not None:
             # evi_labels = evi_labels[:,1:] # [batch,5]
             mask = evi_labels == 0 # [batch,5]
-            mask = torch.zeros_like(mask,dtype=torch.float32).masked_fill(mask,float("-inf")) # 邻接矩阵中为0的地方填上负无穷 [batch,5]
+            mask = torch.zeros_like(mask,dtype=torch.float32).masked_fill(mask,float("-inf")) # [batch,5]
             weight = weight + mask.unsqueeze(-1) # [256,5,1]
         weight = F.softmax(weight,dim=1)  # [256,5,1]
         outputs = torch.matmul(weight.transpose(1,2), evidences).squeeze(dim=1)  # [256,768]
@@ -52,23 +52,13 @@ class MultiClassFocalLossWithAlpha(nn.Module):
 
     def forward(self, pred, target):
         self.alpha = self.alpha.to(target.device)
-<<<<<<< HEAD
-        alpha = self.alpha[target]
-        log_softmax = torch.log_softmax(pred, dim=1)
-        logpt = torch.gather(log_softmax, dim=1, index=target.view(-1, 1))
-        logpt = logpt.view(-1)
-        ce_loss = -logpt
-        pt = torch.exp(logpt)
-        focal_loss = alpha * (1 - pt) ** self.gamma * ce_loss
-=======
-        alpha = self.alpha[target]  # 为当前batch内的样本，逐个分配类别权重，shape=(bs), 一维向量
-        log_softmax = torch.log_softmax(pred, dim=1) # 对模型裸输出做softmax再取log, shape=(bs, 3)
-        logpt = torch.gather(log_softmax, dim=1, index=target.view(-1, 1))  # 取出每个样本在类别标签位置的log_softmax值, shape=(bs, 1)
-        logpt = logpt.view(-1)  # 降维，shape=(bs)
-        ce_loss = -logpt  # 对log_softmax再取负，就是交叉熵了
-        pt = torch.exp(logpt)  #对log_softmax取exp，把log消了，就是每个样本在类别标签位置的softmax值了，shape=(bs)
-        focal_loss = alpha * (1 - pt) ** self.gamma * ce_loss  # 根据公式计算focal loss，得到每个样本的loss值，shape=(bs)
->>>>>>> aca5539 (first commit)
+        alpha = self.alpha[target]  
+        log_softmax = torch.log_softmax(pred, dim=1) 
+        logpt = torch.gather(log_softmax, dim=1, index=target.view(-1, 1))  
+        logpt = logpt.view(-1)  
+        ce_loss = -logpt  
+        pt = torch.exp(logpt)  
+        focal_loss = alpha * (1 - pt) ** self.gamma * ce_loss  
         if self.reduction == "mean":
             return torch.mean(focal_loss)
         if self.reduction == "sum":
@@ -85,11 +75,7 @@ class ONE_ATTENTION_with_bert(torch.nn.Module):
         self.conv2 = GCNConv(nfeat, nfeat)
         self.attention = SelfAttention(nfeat*2)
         self.classifier = nn.Sequential(
-<<<<<<< HEAD
-            Linear(nfeat , nfeat),
-=======
-            Linear(nfeat , nfeat), # +1解释：第一个结点，图表示
->>>>>>> aca5539 (first commit)
+            Linear(nfeat , nfeat), 
             ELU(True),
             Linear(nfeat, nclass),
             ELU(True),
@@ -106,7 +92,7 @@ class ONE_ATTENTION_with_bert(torch.nn.Module):
         datas = []
         for i in range(len(pooled_output)):
             x = pooled_output[i] # [6,768]
-            # 全连接
+           
             edge_index = torch.arange(sent_labels[i].sum().item())
             edge_index = torch.cat([edge_index.unsqueeze(0).repeat(1,sent_labels[i].sum().item()),
                                     edge_index.unsqueeze(1).repeat(1,sent_labels[i].sum().item()).view(1,-1)],dim=0) # [2,36]
@@ -137,10 +123,7 @@ class CRFV(nn.Module):
     def __init__(self, nfeat, nclass, max_length, beam_size, max_evi_num, causal_method="cf", beta = 0.4):
         super(CRFV, self).__init__()
         self.bert = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-<<<<<<< HEAD
-=======
         self.nfeat = nfeat
->>>>>>> aca5539 (first commit)
         self.max_length = max_length
         self.beam_size = beam_size
         self.max_evi_num = max_evi_num
@@ -148,41 +131,13 @@ class CRFV(nn.Module):
         self.conv1 = GCNConv(nfeat, nfeat)
         self.conv2 = GCNConv(nfeat, nfeat)
         self.beta = beta
-<<<<<<< HEAD
-        self.mlp1 = nn.Sequential(
-=======
         self.mlp1 = nn.Sequential(  
->>>>>>> aca5539 (first commit)
             Linear(3*nfeat, nfeat),
             ELU(),
             Linear(nfeat, 1),
             ELU(),
         )
 
-<<<<<<< HEAD
-        self.mlp3 = nn.Sequential(  # train_fever[batch, 6, 6]
-            nn.Flatten(),
-            nn.Linear(36,self.nclass),
-            nn.ReLU(True)
-        )
-
-        self.mlp4 = nn.Sequential(  # train_fever[batch, 5, 768]
-            nn.Flatten(),
-            nn.Linear(self.max_evi_num * 768, self.nclass),
-            nn.ReLU(True)
-        )
-
-        self.attention = SelfAttention(nfeat*2)
-
-
-        if "cf" in self.causal_method:
-            self.classifier_claim = nn.Sequential(
-                Linear(768 , self.nclass),
-                ELU(),
-            )
-            self.constant = nn.Parameter(torch.tensor(0.0))
-
-=======
         self.mlp3 = nn.Sequential(  
             nn.Flatten(),
             nn.Linear((self.max_evi_num + 1) * (self.max_evi_num + 1), 3),
@@ -204,7 +159,6 @@ class CRFV(nn.Module):
             )
         self.constant = nn.Parameter(torch.tensor(0.0))
         
->>>>>>> aca5539 (first commit)
         self.lstm = nn.LSTM(nfeat,nfeat,2,batch_first=True)
         # self.bn = BatchNorm1d(nfeat)
         self.classifier = nn.Sequential(
@@ -224,14 +178,6 @@ class CRFV(nn.Module):
         res = self.classifier_claim(claim_batch) # [batch,3]
         return res # [10,3]
 
-<<<<<<< HEAD
-    def reasoning(self,res_claim,res,res_evidence):
-        tie = res_claim
-        te_fusion = res
-        nde_final = res_evidence
-        return tie, te_fusion, nde_final
-
-=======
     def counterfactual_reasoning(self,res_claim,res,res_evidence):
         te_fusion = torch.log(1e-9 + torch.sigmoid(res_claim + res + res_evidence))
         nde_final = torch.log(1e-9 + torch.sigmoid(res_claim.detach() + self.constant * torch.ones_like(res) + self.constant * torch.ones_like(res_evidence)))
@@ -252,7 +198,6 @@ class CRFV(nn.Module):
     #     return tie, te_fusion, nde_final
     
     
->>>>>>> aca5539 (first commit)
     def cal_transition_probability_matrix(self, x, evi_labels): # [batch,6,768] [batch,6]
         node_num = x.shape[1]
         mat_rep = torch.cat([x.unsqueeze(2).expand(-1,-1,node_num,-1), #[batch,6,6,768]
@@ -261,24 +206,14 @@ class CRFV(nn.Module):
                              ],dim=-1) # [batch,6,6,768*3]
         weight = self.mlp1(mat_rep) # [batch,6,6,1]
         weight = weight.squeeze(-1) # [batch,6,6]
-<<<<<<< HEAD
-
-=======
         
->>>>>>> aca5539 (first commit)
         # weight = torch.matmul(x,x.transpose(1,2)) # [batch,6,6]
         # print(weight.sum().item())
         evi_labels = evi_labels.to(torch.float)
         mask = torch.matmul(evi_labels.unsqueeze(2),evi_labels.unsqueeze(1)) # [batch,6,6]
-<<<<<<< HEAD
-        mask = mask + torch.diag_embed(torch.ones(mask.shape[1])).to(mask.device)
-        mask = mask == 0
-        mask = torch.zeros_like(mask,dtype=torch.float32).masked_fill(mask,float("-inf"))
-=======
         mask = mask + torch.diag_embed(torch.ones(mask.shape[1])).to(mask.device) 
         mask = mask == 0
         mask = torch.zeros_like(mask,dtype=torch.float32).masked_fill(mask,float("-inf")) 
->>>>>>> aca5539 (first commit)
         weight = weight + mask
         probability = F.softmax(weight,dim=-1) # [batch,6,6]
         return probability # [batch,6,6]
@@ -290,22 +225,14 @@ class CRFV(nn.Module):
         _, pooled_output = self.bert(input_ids, token_type_ids=segment_ids, \
                                      attention_mask=input_mask, output_all_encoded_layers=False,)
         pooled_output = pooled_output.view(-1,1+self.max_evi_num,pooled_output.shape[-1]) # [batch,6,768]
-<<<<<<< HEAD
-
-=======
         # pooled_output = F.normalize(pooled_output,dim=-1) # 归一化
->>>>>>> aca5539 (first commit)
         feature_batch, claim_batch = pooled_output[:,1:,:], pooled_output[:,0,:] # [batch,5,768] # [batch,768]
 
         datas = []
         for i in range(len(feature_batch)):
             x = torch.cat([claim_batch[i].unsqueeze(0),
                            feature_batch[i]],dim=0) # [6,768]
-<<<<<<< HEAD
-            # 全连接
-=======
             
->>>>>>> aca5539 (first commit)
             edge_index = torch.arange(sent_labels[i].sum().item())
             edge_index = torch.cat([edge_index.unsqueeze(0).repeat(1,sent_labels[i].sum().item()),
                                     edge_index.unsqueeze(1).repeat(1,sent_labels[i].sum().item()).view(1,-1)],dim=0) # [2,36]
@@ -313,10 +240,7 @@ class CRFV(nn.Module):
             edge_index = torch.cat([edge_index,edge_index1],dim=1)
             edge_index = edge_index.to(x.device)
             data = Data(x=x, edge_index=edge_index)
-<<<<<<< HEAD
-=======
             # data.validate(raise_on_error=True)
->>>>>>> aca5539 (first commit)
             datas.append(data)
         datas = Batch.from_data_list(datas)
         x, edge_index = datas.x, datas.edge_index
@@ -327,14 +251,6 @@ class CRFV(nn.Module):
         x = F.normalize(x,dim=-1)
 
         x = x.view(-1,1+self.max_evi_num,x.shape[-1]) # [batch,6,768]
-<<<<<<< HEAD
-        probability = self.cal_transition_probability_matrix(x,sent_labels)  # [batch,6,6]
-        self.causal_method == "cf"
-        res_claim = self.claim_classifier(claim_batch)  #[batch,3]
-        res_evidence = self.mlp4(feature_batch)  #[batch,3]
-        tie, te_fusion, nde_final = self.reasoning(res_claim,probability, res_evidence)
-        return tie, te_fusion, nde_final, probability, res_claim, res_evidence
-=======
         # x = torch.cat([claim_batch.unsqueeze(1),feature_batch],dim=1) # [batch,6,768]
         probability = self.cal_transition_probability_matrix(x,sent_labels)  # [batch,6,6]
 
@@ -345,7 +261,6 @@ class CRFV(nn.Module):
         res_evidence = self.mlp4(feature_batch)  #[batch,3]
         tie, te_fusion, nde_final = self.counterfactual_reasoning(res_claim, res, res_evidence)
         return tie, te_fusion, nde_final, res, res_claim, res_evidence
->>>>>>> aca5539 (first commit)
     
 
 class CrossAttention(nn.Module):
@@ -401,7 +316,7 @@ class CLASSIFIER(nn.Module):
     def __init__(self, nfeat, nclass):
         super(CLASSIFIER, self).__init__()
         self.bert = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.mlp = nn.Sequential(  # 三分类
+        self.mlp = nn.Sequential(  
             Linear(nfeat, nclass),
             ELU(True),
         )
@@ -418,14 +333,14 @@ class CLEVER(nn.Module):
         super(CLEVER, self).__init__()
         self.bert1 = BertModel.from_pretrained("pretrained_models/BERT-Pair")
         self.bert2 = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.mlp1 = nn.Sequential(  # 三分类
+        self.mlp1 = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
             # Sigmoid(),
         )
-        self.mlp2 = nn.Sequential(  # 三分类
+        self.mlp2 = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
@@ -468,20 +383,20 @@ class CICR(nn.Module):
     def __init__(self, nfeat, nclass):
         super(CICR, self).__init__()
         self.bert = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.classifier_claim = nn.Sequential(  # 三分类
+        self.classifier_claim = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
         )
-        self.classifier_evidence = nn.Sequential(  # 三分类
+        self.classifier_evidence = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
         )
         # constant_evidence = torch.nn.Parameter(torch.zeros((nfeat)))
-        self.classifier_fusion = nn.Sequential(  # 三分类
+        self.classifier_fusion = nn.Sequential( 
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
@@ -534,14 +449,14 @@ class CLEVER(nn.Module):
         super(CLEVER, self).__init__()
         self.bert1 = BertModel.from_pretrained("pretrained_models/BERT-Pair")
         self.bert2 = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.mlp1 = nn.Sequential(  # 三分类
+        self.mlp1 = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
             # Sigmoid(),
         )
-        self.mlp2 = nn.Sequential(  # 三分类
+        self.mlp2 = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
@@ -585,7 +500,7 @@ class CLEVER_graph(nn.Module):
         self.evi_max_num = evi_max_num
         self.fusion_model = ONE_ATTENTION_with_bert(nfeat, nclass, evi_max_num)
         self.claim_model = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.mlp_claim = nn.Sequential(  # 三分类
+        self.mlp_claim = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
@@ -616,7 +531,7 @@ class CLEVER_graph(nn.Module):
         # return res_claim, res_final, cf_res, tie
         return res_claim, res_final, cf_res, tie
 
-class ONE_ATTENTION(nn.Module): # 不带bert
+class ONE_ATTENTION(nn.Module): 
     def __init__(self, nfeat, nclass, evi_max_num, pool):
         super(ONE_ATTENTION, self).__init__()
         self.evi_max_num = evi_max_num
@@ -635,7 +550,7 @@ class ONE_ATTENTION(nn.Module): # 不带bert
         datas = []
         for i in range(len(pooled_output)):
             x = pooled_output[i] # [6,768]
-            # 全连接
+            
             edge_index = torch.arange(sent_labels[i].sum().item())
             edge_index = torch.cat([edge_index.unsqueeze(0).repeat(1,sent_labels[i].sum().item()),
                                     edge_index.unsqueeze(1).repeat(1,sent_labels[i].sum().item()).view(1,-1)],dim=0) # [2,36]
@@ -671,7 +586,7 @@ class CICR_graph(nn.Module):
         self.bert = BertModel.from_pretrained("pretrained_models/BERT-Pair")
         self.evidence_model = ONE_ATTENTION(nfeat, nclass, evi_max_num, "mean")
         self.fusion_model = ONE_ATTENTION(nfeat, nclass, evi_max_num, "att")
-        self.classifier_claim = nn.Sequential(  # 三分类
+        self.classifier_claim = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
@@ -728,20 +643,20 @@ class CICR(nn.Module):
     def __init__(self, nfeat, nclass):
         super(CICR, self).__init__()
         self.bert = BertModel.from_pretrained("pretrained_models/BERT-Pair")
-        self.classifier_claim = nn.Sequential(  # 三分类
+        self.classifier_claim = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
         )
-        self.classifier_evidence = nn.Sequential(  # 三分类
+        self.classifier_evidence = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
             ReLU(True),
         )
         # constant_evidence = torch.nn.Parameter(torch.zeros((nfeat)))
-        self.classifier_fusion = nn.Sequential(  # 三分类
+        self.classifier_fusion = nn.Sequential(  
             Linear(nfeat, nfeat),
             ReLU(True),
             Linear(nfeat, nclass),
