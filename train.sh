@@ -1,4 +1,3 @@
-
 # CRFV fever 2-way 
 CUDA_VISIBLE_DEVICES="0" python train_CRFV_fever_2way.py \
 --seed 1234 \
